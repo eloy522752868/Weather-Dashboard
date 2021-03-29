@@ -25,7 +25,7 @@ searchFormEl.on("submit", function(event)
     event.preventDefault(); 
     var searchCity = searchCityEl.val();
     var apiKey = "19b818be73dc1ae04217d6a6cfb8c6db"
-    var queryURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + searchCity +'&units=imperial&appid=' + apiKey + ''; 
+    var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + searchCity +'&units=imperial&appid=' + apiKey + ''; 
 
     fetch(queryURL)
     .then(function (response) {
