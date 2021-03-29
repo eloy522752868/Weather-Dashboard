@@ -29,7 +29,7 @@
                 <nav class="navbar navbar-light bg-light">
                     <form id ="search-form" class="form-inline">
                       <input id ="search-city" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                      <button  id ="search-form" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                   </nav>
                   <ul class="list-group">
@@ -41,14 +41,14 @@
                   </ul>
                   
             </aside>
-            <main class="col-sm-10">
+            <main id = "main-container" class="col-sm-10">
                 <div class="card" id = "today-container" style="width: 100%;">
                     <div class="card-body">
-                      <h5 class="card-title">Atlanta</h5>
-                      <p class="card-text">Temoerature 90.</p>
-                      <p class="card-text">Humity.</p>
-                      <p class="card-text">Wind speed 4 MPH.</p>
-                      <p class="card-text">UV Index 9.49.</p>
+                      <h5 id = "city" class="card-title">Atlanta</h5>
+                      <p id = "temp-today" class="card-text">Temoerature 90.</p>
+                      <p id ="temp-humidity" class="card-tex">Humity.</p>
+                      <p id ="temp-wind" class="card-tex">Wind speed 4 MPH.</p>
+                      <p id = "temp-UV" class="card-tex">UV Index 9.49.</p>
                     </div>
                   </div>
                   <div>
@@ -56,28 +56,39 @@
                     <div class="container-fluid">
                         <h3>5-Day Forcast</h3>
                         <div class="row flex-row flex-nowrap" id ="five-day-container">
-                            <div class="col-3">
+                            <div class="col-2">
                                 <div class="card card-block"  id ="fiveDay1">
-                                    <p class="card-text">Humity.</p>
-                                    <p class="card-text">Wind speed 4 MPH.</p>
-                                    <p class="card-text">UV Index 9.49.</p>
+                                  <p  id ="day1-temp" class="card-text">Humity.</p>
+                                  <p  id ="day1-humidity" class="card-text">Wind speed 4 MPH.</p>
 
                                 </div>
                             </div>
                      
-                            <div class="col-3">
-                                <div class="card card-block" id ="fiveDay1">
-                                    <p class="card-text">Humity.</p>
-                                    <p class="card-text">Wind speed 4 MPH.</p>
-                                    <p class="card-text">UV Index 9.49.</p>
+                            <div class="col-2">
+                                <div class="card card-block" id ="fiveDay2">
+                                  <p  id ="day2-temp" class="card-text">Humity.</p>
+                                  <p  id ="day2-humidity" class="card-text">Wind speed 4 MPH.</p>
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <div class="card card-block" id ="fiveDay2">Card</div>
+                            <div class="col-2">
+                                <div class="card card-block" id ="fiveDay3">
+                                  <p  id ="day3-temp" class="card-text">Humity.</p>
+                                  <p  id ="day3-humidity" class="card-text">Wind speed 4 MPH.</p>
+                                </div>
+                               
                             </div>
-                            <div class="col-3">
-                                <div class="card card-block" id ="fiveDay3">Card</div>
+                            <div class="col-2">
+                                <div class="card card-block" id ="fiveDay4">
+                                  <p  id ="day4-temp" class="card-text">Humity.</p>
+                                  <p  id ="day4-humidity" class="card-text">Wind speed 4 MPH.</p>
+                                </div>
                             </div>
+                            <div class="col-2">
+                              <div class="card card-block" id ="fiveDay5">
+                                <p  id ="day5-temp" class="card-text">Humity.</p>
+                                <p  id ="day5-humidity" class="card-text">Wind speed 4 MPH.</p>
+                              </div>
+                          </div>
                         </div>
                     </div>
 
