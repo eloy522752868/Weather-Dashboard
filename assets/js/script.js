@@ -19,7 +19,7 @@ var fiveDayEl = $('#five-day-container');
 var weatherSearch = []; // Results will go here
 var  storedWeatherSearchHistory = JSON.parse(localStorage.getItem("weatherSearchHistory"));
 var liHistorycount = 0;
-$('#main-container').hide();
+//$('#main-container').hide();
 
 if (weatherSearch  == null || weatherSearch.length === 0) {
   var retrievedData = localStorage.getItem("storedWeatherSearchHistory");
@@ -66,12 +66,12 @@ searchFormEl.on("submit", function(event)
       $('#temp-today').empty();
       $('#temp-temp-humidity').empty();
       $('#temp-wind').empty();
+      $('#city').append('<img id="wiconmain" src="theImg.png" />')
       $('#city').append(data.name + " ("  + moment().format("MM/DD/YYYY") + ") ");
-      $("wiconmain").attr("src", " http://openweathermap.org/img/w/"+ data.weather[0].icon +".png");
+      $("#wiconmain").attr("src", " http://openweathermap.org/img/w/"+ data.weather[0].icon +".png");
       $('#temp-today').append("Tempature: " + data.main.temp + "°F");
       $('#temp-humidity').append("Humidity: " + data.main.humidity+ "%");
       $('#temp-wind').append("Wind Speed: " + data.wind.speed + " MPH");
-     console.log(searchCity);
       allapi(data.coord.lon,data.coord.lat);
       weatherSearch.push(searchCity);
 
