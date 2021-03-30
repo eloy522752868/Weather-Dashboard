@@ -1,16 +1,19 @@
-//alert("HellowWrold")
+
+/**
+* Name: Eloy Gonzalez
+* Date: 03/30/2021
+* Description:
+
+Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL.
+ Developers are often tasked with retrieving data from another application's API and using it in
+ the context of their own. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
+*/
+
+/**Decalared Variables
+ * I used the document method querySelector() user moment to get data. Add variables and set array and local variable
+ */
 
 
-//window.onload = function() {
-    //if ('undefined' == typeof window.jQuery) { 
-        // jQuery is loaded  
-        //alert("Doesn't Work");
-   // } else {
-        // jQuery is not loaded
-      
-     //   alert("Yeah!");
-  //  }
-//}
 
 var searchFormEl = $('#search-form');
 var searchCityEl = $('#search-city');
@@ -20,7 +23,7 @@ var weatherSearch = []; // Results will go here
 var  storedWeatherSearchHistory = JSON.parse(localStorage.getItem("weatherSearchHistory"));
 var liHistorycount = 0;
 $('#main-container').hide();
-
+//if array is empty after checking for local storage if empty create data for array for history search.
 if (weatherSearch  == null || weatherSearch.length === 0) {
   var retrievedData = localStorage.getItem("storedWeatherSearchHistory");
   if (retrievedData == null)
@@ -48,12 +51,10 @@ else
 {
 
 }
-
-
-
+//Declared Function
+//go to wheather APi get data that has been for new search city or form click of history.
 function findweather(cityLocation)
 {
-  
   var apiKey = "19b818be73dc1ae04217d6a6cfb8c6db"
   var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityLocation +'&units=imperial&appid=' + apiKey + ''; 
   searchCity = cityLocation;
@@ -64,7 +65,6 @@ function findweather(cityLocation)
   .then(function (data) {
    console.log(data.weather[0]);
     $('#main-container').show();
-   // $("#todayContainerEl").show( );
     $('#city').empty();
     $('#temp-today').empty();
     $('#temp-humidity').empty();
@@ -87,42 +87,20 @@ function findweather(cityLocation)
       var lihistname = "history-city" + liHistorycount + "";
       var clickli = document.getElementById("history-city" + liHistorycount);
       clickli.addEventListener("click", function (event) {
-        // used jquery as requested
         findweather(this.textContent);
   
         });
         liHistorycount++;
     }
-    //imagesDisplay.empty();
-   // http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}
-   // for (var i = 0; i < data.data.length; i++) {
-      //var imageEl = $("<img>");
-      //imageEl.addClass("col-sm-4");
-      //imageEl.attr("src", data.data[i].images.fixed_width_small.url);
-      //imagesDisplay.append(imageEl);
-//}
+
   });
-  console.log( weatherSearch)
-// convert the response from JSON
-// Start by console logging the data.
+
 }
 
-
-
-searchFormEl.on("submit", function(event)
-{
-  event.preventDefault(); 
-  searchCity = searchCityEl.val();
-  weatherSearch.push(searchCity);
-  findweather(searchCity);
-});
-
-
+//go to wheather APi get additional data that has been for new search city or form click of history.
 function allapi(lon,lat)
 { 
-
     https://api.openweathermap.org/data/2.5/onecall?lat=25.7743&lon=-80.1937&exclude=hourly,daily&units=imperial&appid=19b818be73dc1ae04217d6a6cfb8c6db
-
     var apiKey = "19b818be73dc1ae04217d6a6cfb8c6db"
     var queryURL = 'https://api.openweathermap.org/data/2.5/onecall?lat='+ lat +'&lon=' +lon + '&units=imperial&appid=' + apiKey + ''; 
     moment().subtract(10, 'days').calendar();
@@ -158,7 +136,8 @@ function allapi(lon,lat)
         $('#temp-UV').css("background-color", "purple");
 
       }
-         //5 day for cast
+       //5 day for cast
+      //Used moments and requested
       //Day 1
       $('#day1-temp').empty();
       $('#day1-humidity').empty();
@@ -206,3 +185,13 @@ function allapi(lon,lat)
         
     });
 }
+
+//on click events
+//click on search button
+searchFormEl.on("submit", function(event)
+{
+  event.preventDefault(); 
+  searchCity = searchCityEl.val();
+  weatherSearch.push(searchCity);
+  findweather(searchCity);
+});
