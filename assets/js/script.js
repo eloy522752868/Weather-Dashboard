@@ -116,7 +116,30 @@ function allapi(lon,lat)
       console.log(data.daily[0]);
       $('#temp-UV').empty();
       $('#temp-UV').append("UV Index: " + data.current.uvi);
+      if( data.current.uvi < 2 )
+      {
+        $('#temp-UV').css("background-color", "green");
+      }
+      else if( data.current.uvi > 2 &&  data.current.uvi <= 5 )
+      {
+        $('#temp-UV').css("background-color", "yellow");
 
+      }
+      else if( data.current.uvi > 5 &&  data.current.uvi <= 7 )
+      {
+        $('#temp-UV').css("background-color", "orange");
+
+      }
+      else if( data.current.uvi > 7 &&  data.current.uvi <= 10 )
+      {
+        $('#temp-UV').css("background-color", "red");
+
+      }
+      else if( data.current.uvi > 7 &&  data.current.uvi < 11 )
+      {
+        $('#temp-UV').css("background-color", "purple");
+
+      }
          //5 day for cast
       //Day 1
       $('#day1-temp').empty();
