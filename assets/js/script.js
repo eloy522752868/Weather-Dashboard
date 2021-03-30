@@ -19,7 +19,7 @@ var fiveDayEl = $('#five-day-container');
 var weatherSearch = []; // Results will go here
 var  storedWeatherSearchHistory = JSON.parse(localStorage.getItem("weatherSearchHistory"));
 var liHistorycount = 0;
-//$('#main-container').hide();
+$('#main-container').hide();
 
 if (weatherSearch  == null || weatherSearch.length === 0) {
   var retrievedData = localStorage.getItem("storedWeatherSearchHistory");
@@ -33,7 +33,14 @@ if (weatherSearch  == null || weatherSearch.length === 0) {
     for (var i = 0; i < weatherSearch.length; i++)
     {
       $(".list-group").append('<li id = "history-city' + liHistorycount + '" class="list-group-item ">' +  weatherSearch[i] +'</li>'); 
-      liHistorycount++;
+      var lihistname = "history-city" + liHistorycount + "";
+      var clickli = document.getElementById("history-city" + liHistorycount);
+      clickli.addEventListener("click", function (event) {
+        // used jquery as requested
+        findweather(this.textContent);
+  
+        });
+        liHistorycount++;
     }
   }
 } 
@@ -44,59 +51,71 @@ else
 
 
 
+function findweather(cityLocation)
+{
+  
+  var apiKey = "19b818be73dc1ae04217d6a6cfb8c6db"
+  var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityLocation +'&units=imperial&appid=' + apiKey + ''; 
+  searchCity = cityLocation;
+  fetch(queryURL)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+   console.log(data.weather[0]);
+    $('#main-container').show();
+   // $("#todayContainerEl").show( );
+    $('#city').empty();
+    $('#temp-today').empty();
+    $('#temp-humidity').empty();
+    $('#temp-wind').empty();
+    $('#city').append('<img id="wiconmain" src="theImg.png" />')
+    $('#city').append(data.name + " ("  + moment().format("MM/DD/YYYY") + ") ");
+    $("#wiconmain").attr("src", " http://openweathermap.org/img/w/"+ data.weather[0].icon +".png");
+    $('#temp-today').append("Tempature: " + data.main.temp + "°F");
+    $('#temp-humidity').append("Humidity: " + data.main.humidity+ "%");
+    $('#temp-wind').append("Wind Speed: " + data.wind.speed + " MPH");
+    allapi(data.coord.lon,data.coord.lat);
+    weatherSearch.push(searchCity);
+
+
+    console.log( weatherSearch)
+    localStorage.removeItem("storedWeatherSearchHistory");
+    localStorage.setItem("storedWeatherSearchHistory", JSON.stringify(weatherSearch));
+    $('.list-group').empty();
+    for (var i = 0; i < weatherSearch.length; i++)
+    {
+      $(".list-group").append('<li id = "history-city' + liHistorycount + '" class="list-group-item ">' + weatherSearch[i] +'</li>'); 
+      var lihistname = "history-city" + liHistorycount + "";
+      var clickli = document.getElementById("history-city" + liHistorycount);
+      clickli.addEventListener("click", function (event) {
+        // used jquery as requested
+        findweather(this.textContent);
+  
+        });
+        liHistorycount++;
+    }
+    //imagesDisplay.empty();
+   // http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}
+   // for (var i = 0; i < data.data.length; i++) {
+      //var imageEl = $("<img>");
+      //imageEl.addClass("col-sm-4");
+      //imageEl.attr("src", data.data[i].images.fixed_width_small.url);
+      //imagesDisplay.append(imageEl);
+//}
+  });
+  console.log( weatherSearch)
+// convert the response from JSON
+// Start by console logging the data.
+}
 
 
 
 searchFormEl.on("submit", function(event)
 {
-    event.preventDefault(); 
-    searchCity = searchCityEl.val();
-    var apiKey = "19b818be73dc1ae04217d6a6cfb8c6db"
-    var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + searchCity +'&units=imperial&appid=' + apiKey + ''; 
-
-    fetch(queryURL)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-     console.log(data.weather[0]);
-      $('#main-container').show();
-     // $("#todayContainerEl").show( );
-      $('#city').empty();
-      $('#temp-today').empty();
-      $('#temp-temp-humidity').empty();
-      $('#temp-wind').empty();
-      $('#city').append('<img id="wiconmain" src="theImg.png" />')
-      $('#city').append(data.name + " ("  + moment().format("MM/DD/YYYY") + ") ");
-      $("#wiconmain").attr("src", " http://openweathermap.org/img/w/"+ data.weather[0].icon +".png");
-      $('#temp-today').append("Tempature: " + data.main.temp + "°F");
-      $('#temp-humidity').append("Humidity: " + data.main.humidity+ "%");
-      $('#temp-wind').append("Wind Speed: " + data.wind.speed + " MPH");
-      allapi(data.coord.lon,data.coord.lat);
-      weatherSearch.push(searchCity);
-
-
-      console.log( weatherSearch)
-      localStorage.removeItem("storedWeatherSearchHistory");
-      localStorage.setItem("storedWeatherSearchHistory", JSON.stringify(weatherSearch));
-      $('.list-group').empty();
-      for (var i = 0; i < weatherSearch.length; i++)
-      {
-        $(".list-group").append('<li id = "history-city' + liHistorycount + '" class="list-group-item ">' + weatherSearch[i] +'</li>'); 
-        liHistorycount++;
-      }
-      //imagesDisplay.empty();
-     // http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}
-     // for (var i = 0; i < data.data.length; i++) {
-        //var imageEl = $("<img>");
-        //imageEl.addClass("col-sm-4");
-        //imageEl.attr("src", data.data[i].images.fixed_width_small.url);
-        //imagesDisplay.append(imageEl);
-//}
-    });
-    console.log( weatherSearch)
-  // convert the response from JSON
-  // Start by console logging the data.
+  event.preventDefault(); 
+  searchCity = searchCityEl.val();
+  findweather(searchCity);
 });
 
 
