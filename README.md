@@ -1,11 +1,11 @@
 # Weather-Dashboard
 
 ## Description
-Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
+On this project I access Third-party APIs for the weather dashboard app for weather daily info and 5 day forecast. Developers are often tasked with retrieving data from another application's API and using it in the context of their own. This was a great project to work server level API's.
 
 ![Portfolio Site](./assets/images/weatherdashboard.png)
 
 ## Deployed Site
 deployed site below:
 
-[Deployed Site](https://eloy522752868.github.io/Weather-Dashboard/)
+[Deployed Site](https://eloy522752868.github.io/weather-dashboard/)
