@@ -76,8 +76,6 @@ function findweather(cityLocation)
     $('#temp-humidity').append("Humidity: " + data.main.humidity+ "%");
     $('#temp-wind').append("Wind Speed: " + data.wind.speed + " MPH");
     allapi(data.coord.lon,data.coord.lat);
-    weatherSearch.push(searchCity);
-
 
     console.log( weatherSearch)
     localStorage.removeItem("storedWeatherSearchHistory");
@@ -115,6 +113,7 @@ searchFormEl.on("submit", function(event)
 {
   event.preventDefault(); 
   searchCity = searchCityEl.val();
+  weatherSearch.push(searchCity);
   findweather(searchCity);
 });
 
